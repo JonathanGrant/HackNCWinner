@@ -19,6 +19,20 @@ var Sky = React.createClass({
   }
 })
 
+var TestText = React.createClass({
+  getInitialState: function() {
+    return {
+      x: 0,
+      y: 0,
+      z: 0,
+      myText: "Motherfuckers talkin shit til you show up where they live"
+    }
+  },
+  render: function() {
+    return (<a-entity text={"text: " + this.state.myText} position="0 0 -5" scale="1 1 2"></a-entity>)
+  }
+})
+
 var AFrameScene = React.createClass({
   getInitialState() {
     return {
@@ -30,6 +44,7 @@ var AFrameScene = React.createClass({
       <a-scene>
         <Camera />
         <Sky />
+        <TestText />
       </a-scene>)
   }
 })
