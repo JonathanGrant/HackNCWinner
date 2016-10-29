@@ -22,6 +22,27 @@ class Gig:
 				self.lon = longlat[0]
 				self.lat = longlat[1]
 		self.about = html.findAll(attrs={'id': 'postingbody'})[0].text.split('QR Code Link to This Post')[1].lstrip()
+		if 'lbg' in self.url:
+			self.genre = 'labor'
+		elif 'cpg' in self.url:
+			self.genre = 'computer'
+		elif 'crg' in self.url:
+			self.genre = 'creative'
+		elif 'cwg' in self.url:
+			self.genre = 'crew'
+		elif 'dmg' in self.url:
+			self.genre = 'domestic'
+		elif 'evg' in self.url:
+			self.genre = 'event'
+		elif 'tlg' in self.url:
+			self.genre = 'talent'
+		elif 'wrg' in self.url:
+			self.genre = 'writing'
+		else:
+			self.genre = 'other'
+		compsection = html.findAll(attrs={'class': 'attrgroup'})[0]
+		self.pay = compsection.find('b').text
+
 
 def getAllGigsEverywhere():
 	allGigs = []
