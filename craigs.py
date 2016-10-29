@@ -21,8 +21,7 @@ class Gig:
 				longlat = link['href'].split('@')[1].split(',')
 				self.lon = longlat[0]
 				self.lat = longlat[1]
-				print(self.lon)
-				print(self.lat)
+		self.about = html.findAll(attrs={'id': 'postingbody'})[0].text
 
 def getAllGigsEverywhere():
 	allGigs = []
