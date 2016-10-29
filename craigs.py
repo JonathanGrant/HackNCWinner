@@ -21,7 +21,7 @@ class Gig:
 				longlat = link['href'].split('@')[1].split(',')
 				self.lon = longlat[0]
 				self.lat = longlat[1]
-		self.about = html.findAll(attrs={'id': 'postingbody'})[0].text
+		self.about = html.findAll(attrs={'id': 'postingbody'})[0].text.split('QR Code Link to This Post')[1].lstrip()
 
 def getAllGigsEverywhere():
 	allGigs = []
