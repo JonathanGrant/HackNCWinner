@@ -9,6 +9,21 @@ class Gig:
 		self.location = location
 		self.url = url
 
+	def getInfoFromCraig(self):
+		params = dict()
+		rsp = requests.get(self.url, params=params)
+		# BS4 can quickly parse our text, make sure to tell it that you're giving html
+		html = bs4(rsp.text, 'html.parser')
+		self.datetime = html.find_all(datetime=True)[0]['datetime']
+		links = html.find_all(href=True)
+		for link in links:
+			if 'maps.google' in link['href']:
+				longlat = link['href'].split('@')[1].split(',')
+				self.lon = longlat[0]
+				self.lat = longlat[1]
+				print(self.lon)
+				print(self.lat)
+
 def getAllGigsEverywhere():
 	allGigs = []
 	locations = []
@@ -35,4 +50,5 @@ def getAllGigsEverywhere():
 			gigUrl = gig.find_all(href=True)[0]['href']
 			allGigs.append(Gig(gig.findAll(attrs={'class': 'hdrlnk'})[0].text, loc, loc_url + gigUrl))
 	return allGigs
-print(getAllGigsEverywhere()[0].url)
+
+print(getAllGigsEverywhere()[0].getInfoFromCraig())
