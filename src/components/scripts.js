@@ -13,6 +13,12 @@ var Camera = React.createClass({
   }
 })
 
+var Sky = React.createClass({
+  render: function() {
+    return (<a-sky src="./src/img/sky.jpg"></a-sky>)
+  }
+})
+
 var AFrameScene = React.createClass({
   getInitialState() {
     return {
@@ -21,8 +27,9 @@ var AFrameScene = React.createClass({
   },
   render: function() {
     return (
-      <a-scene onMouseDown={this.restartAStar}>
+      <a-scene>
         <Camera />
+        <Sky />
       </a-scene>)
   }
 })
