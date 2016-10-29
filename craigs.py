@@ -10,6 +10,7 @@ class Gig:
 		self.url = url
 
 	def getInfoFromCraig(self):
+		print(self.name + ' ~ ' + self.url)
 		params = dict()
 		rsp = requests.get(self.url, params=params)
 		# BS4 can quickly parse our text, make sure to tell it that you're giving html
@@ -18,6 +19,8 @@ class Gig:
 		if len(html.find_all(datetime=True)) > 0:
 			self.datetime = html.find_all(datetime=True)[0]['datetime']
 		links = html.find_all(href=True)
+		self.lon = 'unknown'
+		self.lat = 'unknown'
 		for link in links:
 			if 'maps.google.com/maps/preview' in link['href']:
 				if len(link['href'].split('@')) > 0:
@@ -28,9 +31,9 @@ class Gig:
 		self.about = 'unknown'
 		if len(html.findAll(attrs={'id': 'postingbody'})) > 0:
 			if len(html.findAll(attrs={'id': 'postingbody'})[0].text.split('QR Code Link to This Post')) > 0:
-				self.about = html.findAll(attrs={'id': 'postingbody'})[0].text.split('QR Code Link to This Post')[1].lstrip()
+				self.about = html.findAll(attrs={'id': 'postingbody'})[0].text.split('QR Code Link to This Post')[1].lstrip().replace(',','').replace('\n', '   ')
 			else:
-				self.about = html.findAll(attrs={'id': 'postingbody'})[0].text.lstrip()
+				self.about = html.findAll(attrs={'id': 'postingbody'})[0].text.lstrip().replace(',','').replace('\n', '   ')
 		if 'lbg' in self.url:
 			self.genre = 'labor'
 		elif 'cpg' in self.url:
@@ -52,7 +55,7 @@ class Gig:
 		self.pay = 'Unknown'
 		if len(html.findAll(attrs={'class': 'attrgroup'})) > 0:
 			compsection = html.findAll(attrs={'class': 'attrgroup'})[0]
-			self.pay = compsection
+			# self.pay = compsection
 			if compsection.find('b'):
 				self.pay = compsection.find('b').text
 
@@ -80,17 +83,21 @@ def getAllGigsEverywhere():
 		gigs = html.find_all('p', attrs={'class': 'row'})
 		for gig in gigs:
 			gigUrl = gig.find_all(href=True)[0]['href']
-			myGig = Gig(gig.findAll(attrs={'class': 'hdrlnk'})[0].text, loc, loc_url + gigUrl)
+			if not '.craigslist.' in gigUrl:
+				gigUrl = loc_url + gigUrl
+			elif not 'http:' in gigUrl:
+				gigUrl = 'http:' + gigUrl
+			myGig = Gig(gig.findAll(attrs={'class': 'hdrlnk'})[0].text, loc, gigUrl)
 			myGig.getInfoFromCraig()
 			allGigs.append(myGig)
 	return allGigs
 
-f = open('caligigs.csv','w')
-count = 0
-f.write(('Name,Location,URL,datetime,lon,lat,genre,pay,about' + '\n').encode('utf-8'))
-for gig in getAllGigsEverywhere():
-	print(count)
-	count += 1
-	line = gig.name + ',' + gig.location + ',' + gig.url + ',' + gig.datetime + ',' + gig.lon + ',' + gig.lat + ',' + gig.genre + ',' + gig.pay + ',' + gig.about
-	f.write((line + '\n').encode('utf-8'))
-f.close()
+# f = open('pnw.csv','w')
+# count = 0
+# f.write(('Name,Location,URL,datetime,lon,lat,genre,pay,about' + '\n').encode('utf-8'))
+# for gig in getAllGigsEverywhere():
+# 	print(count)
+# 	count += 1
+# 	line = gig.name + ',' + gig.location + ',' + gig.url + ',' + gig.datetime + ',' + gig.lon + ',' + gig.lat + ',' + gig.genre + ',' + gig.pay + ',' + gig.about
+# 	f.write((line + '\n').encode('utf-8'))
+# f.close()
