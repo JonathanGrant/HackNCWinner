@@ -1,0 +1,23 @@
+{
+  "name": "hacknc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonathanGrant/HackNCWinner.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonathanGrant/HackNCWinner/issues"
+  },
+  "homepage": "https://github.com/JonathanGrant/HackNCWinner#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "react": "^15.3.2"
+  }
+}
