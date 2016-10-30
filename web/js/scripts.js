@@ -49,7 +49,7 @@
       //Create a new feature layer. More info at: https://developers.arcgis.com/javascript/jshelp/inside_feature_layers.html
       var featureLayer = new FeatureLayer
         //set the url to the rest endpoint of your data
-        ("https://services7.arcgis.com/uiRmxMv7XmTrlvhZ/arcgis/rest/services/testcsvlayer/FeatureServer/0", {
+        ("https://services7.arcgis.com/uiRmxMv7XmTrlvhZ/arcgis/rest/services/calicigs_(1)/FeatureServer/0", {
           //See all the constructor options at: https://developers.arcgis.com/javascript/jsapi/featurelayer-amd.html#featurelayer1
           //Requests only the points from the server that are within the current map extent
           mode: FeatureLayer.MODE_ONDEMAND,
