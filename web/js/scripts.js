@@ -30,9 +30,9 @@
         //set basemap to topo.  All the ArcGIS basemap options: "streets" , "satellite" , "hybrid", "topo", "gray", "dark-gray", "oceans", "national-geographic", "terrain", "osm", "terrain" and "dark-gray".  
         basemap: "streets",
         //Center the map at a Lat Long coordinate.  To find a lat long, type in "<City Name of your choice> lat long" into a browser search.
-        center: [-120.3152, 36.6065],
+        center: [-101.3753, 40.6200],
         //Zoom level to start at, based on the basemap.
-        zoom: 7
+        zoom: 5
       });
 
       //Symbol used to draw farmers market points.  Default style is circle. 
@@ -49,7 +49,7 @@
       //Create a new feature layer. More info at: https://developers.arcgis.com/javascript/jshelp/inside_feature_layers.html
       var featureLayer = new FeatureLayer
         //set the url to the rest endpoint of your data
-        ("https://services7.arcgis.com/uiRmxMv7XmTrlvhZ/arcgis/rest/services/calicigs_(1)/FeatureServer/0", {
+        ("https://services7.arcgis.com/uiRmxMv7XmTrlvhZ/arcgis/rest/services/caligigs_(4)/FeatureServer/0", {
           //See all the constructor options at: https://developers.arcgis.com/javascript/jsapi/featurelayer-amd.html#featurelayer1
           //Requests only the points from the server that are within the current map extent
           mode: FeatureLayer.MODE_ONDEMAND,
