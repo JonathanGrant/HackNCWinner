@@ -38,9 +38,9 @@ class Gig:
 
 gigs = []
 count = 0
-f = open('pnwporn.csv','w')
-f.write(('Name,Location,URL,datetime,lon,lat,genre,pay,about,pornlevel' + '\n').encode('utf-8'))
-with open("pnw.csv", "rU") as ff:
+f = open('nearncporn.csv','w')
+f.write(('Name,Location,URL,datetime,lon,lat,genre,pay,about,pornpoints,pornpercent,pornlevel' + '\n').encode('utf-8'))
+with open("nearnc.csv", "rU") as ff:
 	reader = csv.reader(ff, delimiter="\n",dialect=csv.excel_tab)
 	for i, line in enumerate(reader):
 		count += 1
@@ -51,7 +51,7 @@ with open("pnw.csv", "rU") as ff:
 		if myGig.lon is 'unknown':
 			continue
 		myGig.getPornoScore()
-		line = myGig.name + ',' + myGig.location + ',' + myGig.url + ',' + myGig.datetime + ',' + myGig.lon + ',' + myGig.lat + ',' + myGig.genre + ',' + myGig.pay + ',' + myGig.about + ',' + str(myGig.pornlevel)
+		line = myGig.name + ',' + myGig.location + ',' + myGig.url + ',' + myGig.datetime + ',' + myGig.lon + ',' + myGig.lat + ',' + myGig.genre + ',' + myGig.pay + ',' + myGig.about + ',' + str(myGig.pornpoints) + ',' + str(myGig.pornpercent) + ',' + str(myGig.pornlevel)
 		f.write((line + '\n'))
 f.close()
 
