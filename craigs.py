@@ -92,12 +92,14 @@ def getAllGigsEverywhere():
 			allGigs.append(myGig)
 	return allGigs
 
-# f = open('pnw.csv','w')
-# count = 0
-# f.write(('Name,Location,URL,datetime,lon,lat,genre,pay,about' + '\n').encode('utf-8'))
-# for gig in getAllGigsEverywhere():
-# 	print(count)
-# 	count += 1
-# 	line = gig.name + ',' + gig.location + ',' + gig.url + ',' + gig.datetime + ',' + gig.lon + ',' + gig.lat + ',' + gig.genre + ',' + gig.pay + ',' + gig.about
-# 	f.write((line + '\n').encode('utf-8'))
-# f.close()
+f = open('nearnc.csv','w')
+count = 0
+f.write(('Name,Location,URL,datetime,lon,lat,genre,pay,about' + '\n').encode('utf-8'))
+for gig in getAllGigsEverywhere():
+	print(count)
+	count += 1
+	if gig.lon is 'unknown':
+		continue
+	line = gig.name + ',' + gig.location + ',' + gig.url + ',' + gig.datetime + ',' + gig.lon + ',' + gig.lat + ',' + gig.genre + ',' + gig.pay + ',' + gig.about
+	f.write((line + '\n').encode('utf-8'))
+f.close()
