@@ -38,9 +38,9 @@ class Gig:
 
 gigs = []
 count = 0
-f = open('caliporn.csv','w')
+f = open('pnwporn.csv','w')
 f.write(('Name,Location,URL,datetime,lon,lat,genre,pay,about,pornlevel' + '\n').encode('utf-8'))
-with open("caligigs.csv", "rU") as ff:
+with open("pnw.csv", "rU") as ff:
 	reader = csv.reader(ff, delimiter="\n",dialect=csv.excel_tab)
 	for i, line in enumerate(reader):
 		count += 1
@@ -54,3 +54,6 @@ with open("caligigs.csv", "rU") as ff:
 		line = myGig.name + ',' + myGig.location + ',' + myGig.url + ',' + myGig.datetime + ',' + myGig.lon + ',' + myGig.lat + ',' + myGig.genre + ',' + myGig.pay + ',' + myGig.about + ',' + str(myGig.pornlevel)
 		f.write((line + '\n'))
 f.close()
+
+
+
