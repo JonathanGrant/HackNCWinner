@@ -1,7 +1,7 @@
 {
   "name": "hacknc",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a readme.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -19,5 +19,6 @@
   "dependencies": {
     "express": "^4.14.0",
     "react": "^15.3.2"
-  }
+  },
+  "devDependencies": {}
 }
