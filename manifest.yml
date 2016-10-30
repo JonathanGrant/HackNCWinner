@@ -1,0 +1,5 @@
+---
+applications:
+  host: hackncWinner
+  name: hackncWinner
+  memory: 2048M
